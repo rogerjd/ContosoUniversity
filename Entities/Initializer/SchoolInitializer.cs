@@ -14,7 +14,7 @@ namespace Entities.Initializer
         protected override void Seed(SchoolContext context)
         {
             var students = new List<Student> {
-                new Student { FirstMidName = "Carson",  },
+                new Student { FirstMidName = "Carson",EnrollmentDate=DateTime.Parse("2000-07-04")},
                 new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
                 new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2003-09-01")},
                 new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2002-09-01")},
