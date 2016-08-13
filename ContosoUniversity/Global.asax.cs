@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Entities.Context;
+using Entities.Initializer;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +19,11 @@ namespace ContosoUniversity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+/* alt: initializer seed
+            IDatabaseInitializer<SchoolContext> strategy = null;
+            Database.SetInitializer<SchoolContext>(strategy); 
+*/
         }
     }
 }
