@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Context\SchoolContext.cs" />
-    <Compile Include="Initializer\SchoolInitializer.cs" />
+    <Compile Include="Context\SchoolInitializer.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Students.cs" />
