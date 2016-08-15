@@ -26,8 +26,8 @@ namespace ContosoUniversity.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                students = students.Where(s => s.LastName.Contains == searchString
-                || s.FirstMidName.Contains == searchString);
+                students = students.Where(s => s.LastName.Contains(searchString)
+                || s.FirstMidName.Contains(searchString));
             }
 
             switch (sortOrder)
