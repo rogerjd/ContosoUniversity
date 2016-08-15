@@ -18,6 +18,7 @@ namespace ContosoUniversity.Controllers
         // GET: Students
         public ActionResult Index()
         {
+            ViewData["a"] = '\u2191';
             return View(db.Students.ToList());
         }
 
