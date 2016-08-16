@@ -17,10 +17,22 @@ namespace ContosoUniversity.Controllers
         private SchoolContext db = new SchoolContext();
 
         // GET: Students
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSortOrder = sortOrder;
             ViewBag.NameSortOrder = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortOrder = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var students = from std in db.Students
                            select std;
@@ -47,8 +59,11 @@ namespace ContosoUniversity.Controllers
                     break;
             }
 
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
             //            ViewData["a"] = '\u2191';
-            return View(students.ToList());
+//            return View(students.ToList());
         }
 
         // GET: Students/Details/5
