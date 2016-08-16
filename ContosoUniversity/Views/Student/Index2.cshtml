@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<ContosoUniversity.Models.Student>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index2", "Student", FormMethod.Get))
+{
+    <p>
+        Find by Name: @Html.TextBox("filter", ViewBag.filter as String)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("LastName", "Index2", new { sort = ViewBag.toggleNameSort, filter = ViewBag.filter })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FirstMidName)
+        </th>
+        <th>
+            @Html.ActionLink("Enrollment Date", "Index2", new
+           {
+               sort = ViewBag.toggleDateSort,
+               filter = ViewBag.filter
+           })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index2", new { page, sort = ViewBag.sort, filter = ViewBag.filter }))

@@ -63,7 +63,45 @@ namespace ContosoUniversity.Controllers
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
             //            ViewData["a"] = '\u2191';
-//            return View(students.ToList());
+            //            return View(students.ToList());
+        }
+
+        public ActionResult Index2(int? page, string sort, string filter)
+        {
+            int pgNum = page ?? 1;
+
+            ViewBag.filter = filter;
+            ViewBag.sort = sort;
+            ViewBag.toggleNameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewBag.toggleDateSort = sort == "Date" ? "date_desc" : "Date";
+
+            var stds = from std in db.Students
+                       select std;
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                stds = stds.Where(s => s.LastName.Contains(filter) ||
+                s.FirstMidName.Contains(filter));
+            }
+
+            switch (sort)
+            {
+                case "name_desc":
+                    stds = stds.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    stds = stds.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    stds = stds.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    stds = stds.OrderBy(s => s.LastName);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(stds.ToPagedList(pgNum, pageSize));
         }
 
         // GET: Students/Details/5
