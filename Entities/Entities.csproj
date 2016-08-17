@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Context\SchoolConfiguration.cs" />
     <Compile Include="Context\SchoolContext.cs" />
     <Compile Include="Context\SchoolInitializer.cs" />
     <Compile Include="Models\Course.cs" />
