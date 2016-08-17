@@ -1,36 +1,38 @@
 ﻿@model PagedList.IPagedList<ContosoUniversity.Models.Student>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@using PagedList.Mvc
 
- 
 @{
-    ViewBag.Title = "Students";
+    ViewBag.Title = "Index";
 }
 
-<h2>Students</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New" + @ViewData["a"], "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 
 @using (Html.BeginForm("Index", "Student", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search"/>
+        Find by Name: @Html.TextBox("filter", ViewBag.filter as String)
+        <input type="submit" value="Search" />
     </p>
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("LastName", "Index", new { sortOrder = ViewBag.NameSortOrder, currentFilter=ViewBag.CurrentFilter })
+            @Html.ActionLink("LastName", "Index", new { sort = ViewBag.toggleNameSort, filter = ViewBag.filter })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().FirstMidName)
         </th>
         <th>
-            @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortOrder, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Enrollment Date", "Index", new
+           {
+               sort = ViewBag.toggleDateSort,
+               filter = ViewBag.filter
+           })
         </th>
         <th></th>
     </tr>
@@ -56,7 +58,6 @@
     }
 
 </table>
-<br/>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sort = ViewBag.sort, filter = ViewBag.filter }))
