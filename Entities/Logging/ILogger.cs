@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ContosoUniversity.Logging
+namespace Entities.Logging
 {
     public interface ILogger
     {

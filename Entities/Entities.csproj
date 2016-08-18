@@ -53,6 +53,9 @@
     <Compile Include="Context\SchoolConfiguration.cs" />
     <Compile Include="Context\SchoolContext.cs" />
     <Compile Include="Context\SchoolInitializer.cs" />
+    <Compile Include="Context\SchoolInterceptorLogging.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Students.cs" />
