@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace Entities.Context
 {
-    class SchoolInterceptorTransientErrors : DbCommandInterceptor
+    public class SchoolInterceptorTransientErrors : DbCommandInterceptor
     {
         int _counter = 0;
         ILogger _logger = new Logger();
