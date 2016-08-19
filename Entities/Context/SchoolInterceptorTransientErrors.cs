@@ -31,7 +31,6 @@ namespace Entities.Context
                 _counter++;
                 interceptionContext.Exception = CreateDummySqlException();
             }
-            base.ReaderExecuting(command, interceptionContext);
         }
 
         SqlException CreateDummySqlException()
@@ -46,7 +45,7 @@ namespace Entities.Context
             addMethod.Invoke(errorCollection, new[] { sqlError });
 
             var sqlExceptionCtor = typeof(SqlException).GetConstructors(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Where(c => c.GetParameters().Count() == 4).Single();
-            var sqlException = (SqlException)sqlErrorCtor.Invoke(new object[] { "Dummy", errorCollection, null, Guid.NewGuid() });
+            var sqlException = (SqlException)sqlExceptionCtor.Invoke(new object[] { "Dummy", errorCollection, null, Guid.NewGuid() });
 
             return sqlException;
         }
