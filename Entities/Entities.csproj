@@ -54,6 +54,7 @@
     <Compile Include="Context\SchoolContext.cs" />
     <Compile Include="Context\SchoolInitializer.cs" />
     <Compile Include="Context\SchoolInterceptorLogging.cs" />
+    <Compile Include="Context\SchoolInterceptorTransientErrors.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Models\Course.cs" />
