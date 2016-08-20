@@ -22,7 +22,8 @@ namespace ContosoUniversity
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //can put in Configuration too
-            DbInterception.Add(new SchoolInterceptorTransientErrors());
+            //            DbInterception.Add(new SchoolInterceptorTransientErrors());
+            DbInterception.Add(Creator.site);
             DbInterception.Add(new SchoolInterceptorLogging());
 
 

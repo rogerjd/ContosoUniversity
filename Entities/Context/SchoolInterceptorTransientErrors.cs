@@ -10,10 +10,20 @@ using System.Data.SqlClient;
 
 namespace Entities.Context
 {
+    public static class Creator
+    {
+        public static SchoolInterceptorTransientErrors site = new SchoolInterceptorTransientErrors();
+    }
+
     public class SchoolInterceptorTransientErrors : DbCommandInterceptor
     {
         int _counter = 0;
         ILogger _logger = new Logger();
+
+        public void ResetCounter()
+        {
+            _counter = 0;
+        }
 
         public override void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
