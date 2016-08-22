@@ -103,7 +103,10 @@ namespace ContosoUniversity.Controllers
 
             int pageSize = 3;
 
-            Creator.site.ResetCounter();
+            if (filter == "Throw")
+            {
+                Creator.site.ResetCounter();
+            }
             return View(stds.ToPagedList(pgNum, pageSize));
         }
 
