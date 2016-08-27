@@ -1,6 +1,6 @@
-﻿using ContosoUniversity.Models;
+﻿using Entities.Models;
 
-namespace ContosoUniversity.Models
+namespace Entities.Models
 {
     public enum Grade
     {

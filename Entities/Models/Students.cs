@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContosoUniversity.Models
+namespace Entities.Models
 {
     public class Student
     {

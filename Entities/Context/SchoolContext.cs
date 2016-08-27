@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using ContosoUniversity.Models;
+using Entities.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Entities.Context

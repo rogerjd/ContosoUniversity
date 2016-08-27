@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ContosoUniversity.Models;
+using Entities.Models;
 using Entities.Context;
 using PagedList;
 
-namespace ContosoUniversity.Controllers
+namespace Entities.Controllers
 {
     public class StudentController : Controller
     {
