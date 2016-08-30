@@ -32,8 +32,15 @@ namespace Entities.Migrations
             var students = new List<Student>
             {
                 new Student {FirstMidName="Carson", LastName="Alexander",
-                EnrollmentDate=DateTime.Parse("2010-09-01")}
-            };
-        }
+                    EnrollmentDate=DateTime.Parse("2010-09-01")},
+                new Student {FirstMidName="Meredith", LastName="Alonso",
+                    EnrollmentDate= DateTime.Parse("2012-09-01") },
+                new Student {FirstMidName="Atruro", LastName="Anand",
+                    EnrollmentDate=DateTime.Parse("2013-09-01")},
+                new Student {FirstMidName="Gytis", LastName="Barzdukas",
+                    EnrollmentDate=DateTime.Parse("2012-09-01")}
+                };
+            }
     }
 }
+
