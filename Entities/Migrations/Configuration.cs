@@ -111,6 +111,9 @@ namespace Entities.Migrations
             courses.ForEach(s => context.Courses.AddOrUpdate(c => c.CourseID, s));
             context.SaveChanges();
 
+            //ref: test
+            Course c2 = new Course { };
+
             var officeAssignements = new List<OfficeAssignment> {
                 new OfficeAssignment {InstructorID = instructors.Single(i=>i.LastName == "Fakhouri" ).ID,
                     Location = "Smith 17"},
