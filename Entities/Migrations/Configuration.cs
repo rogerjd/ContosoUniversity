@@ -153,7 +153,7 @@ namespace Entities.Migrations
                     Grade = Grade.B
                 },
                 new Enrollment {StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Trignometry").CourseID,
+                    CourseID = courses.Single(c => c.Title == "Trigonometry").CourseID,
                     Grade = Grade.B
                 },
                 new Enrollment {StudentID = students.Single(s => s.LastName == "Alonso").ID,
@@ -197,7 +197,7 @@ namespace Entities.Migrations
 
         void AddOrUpdateInstructor(SchoolContext context, string courseTitle, string instructorName)
         {
-            var crs = context.Courses.SingleOrDefault(c => c.Title == "Literature");
+            var crs = context.Courses.SingleOrDefault(c => c.Title == courseTitle);
 //            var crs = new Course { Title = "test", CourseID = 1234, Credits = 0, DepartmentID = 1,
 //                Instructors = new List<Instructor>()};
             if (crs == null)
