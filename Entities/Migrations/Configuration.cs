@@ -54,7 +54,7 @@ namespace Entities.Migrations
 
             var instructors = new List<Instructor> {
                 new Instructor {FirstMidName="Kim", LastName="Abercrombie",
-                    HireDate=DateTime.Parse("1995-03-011")},
+                    HireDate=DateTime.Parse("1995-03-11")},
                 new Instructor {FirstMidName ="Fadi", LastName = "Fakhouri",
                     HireDate = DateTime.Parse("2002-07-06")},
                 new Instructor {FirstMidName = "Roger", LastName = "Harui",
@@ -98,17 +98,17 @@ namespace Entities.Migrations
                 new Course {CourseID = 1045, Title = "Calculus", Credits = 4,
                     DepartmentID = departments.Single(d => d.Name == "Mathematics").DepartmentID,
                     Instructors = new List<Instructor>() },
-                new Course {CourseID = 3141, Title = "Trignometry", Credits = 4,
+                new Course {CourseID = 3141, Title = "Trigonometry", Credits = 4,
                     DepartmentID = departments.Single(d => d.Name == "Mathematics").DepartmentID,
                     Instructors = new List<Instructor>() },
-                new Course {CourseID = 2021, Title = "", Credits = 3,
+                new Course {CourseID = 2021, Title = "Composition", Credits = 3,
                     DepartmentID = departments.Single(d => d.Name == "English").DepartmentID,
                     Instructors = new List<Instructor>() },
                 new Course {CourseID = 2042, Title = "Literature", Credits = 4,
                     DepartmentID = departments.Single(d => d.Name == "English").DepartmentID,
                     Instructors = new List<Instructor>() },
             };
-            courses.ForEach(s => context.Courses.AddOrUpdate(c => c.CourseID, s));
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseID, s));
             context.SaveChanges();
 
             //ref: test
@@ -197,7 +197,13 @@ namespace Entities.Migrations
 
         void AddOrUpdateInstructor(SchoolContext context, string courseTitle, string instructorName)
         {
-            var crs = context.Courses.SingleOrDefault(c => c.Title == courseTitle);
+            var crs = context.Courses.SingleOrDefault(c => c.Title == "Literature");
+//            var crs = new Course { Title = "test", CourseID = 1234, Credits = 0, DepartmentID = 1,
+//                Instructors = new List<Instructor>()};
+            if (crs == null)
+            {
+                System.Console.WriteLine(courseTitle);
+            }
             var inst = crs.Instructors.SingleOrDefault(i => i.LastName == instructorName);
             if (inst == null)
             {
