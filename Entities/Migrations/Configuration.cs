@@ -127,7 +127,7 @@ namespace Entities.Migrations
 
             AddOrUpdateInstructor(context, "Chemistry", "Kapoor");
             AddOrUpdateInstructor(context, "Chemistry", "Harui");
-            AddOrUpdateInstructor(context, "Microeconomics", "Harui");
+            AddOrUpdateInstructor(context, "Microeconomics", "Zheng");
             AddOrUpdateInstructor(context, "Macroeconomics", "Zheng");
 
             AddOrUpdateInstructor(context, "Calculus", "Fakhouri");
