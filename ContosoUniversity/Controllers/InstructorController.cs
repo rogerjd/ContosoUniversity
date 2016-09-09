@@ -131,14 +131,15 @@ namespace ContosoUniversity.Controllers
                     Assigned = instructorCourses.Contains(course.CourseID)
                 });
             }
+            ViewBag.Courses = viewModel;
         }
 
         // POST: Instructor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Edit")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id)
+        public ActionResult Edit(int? id, string[] selectedCourses)
         {
             if (id == null)
             {
@@ -147,10 +148,11 @@ namespace ContosoUniversity.Controllers
 
             Instructor instructorToUpdate = db.Instructors
                 .Include(i => i.OfficeAssignment)
+                .Include(i => i.Courses)
                 .Where(i => i.ID == id)
                 .Single();
 
-            if (TryUpdateModel(instructorToUpdate, "", new string[] { "LastName", "FirstMidName", "HireDate", "OfficeAssignment" })) ;
+            if (TryUpdateModel(instructorToUpdate, "", new string[] { "LastName", "FirstMidName", "HireDate", "OfficeAssignment" }))
             {
                 try
                 {
@@ -158,6 +160,8 @@ namespace ContosoUniversity.Controllers
                     {
                         instructorToUpdate.OfficeAssignment = null;
                     }
+
+                    UpdateInstructorCourses(selectedCourses, instructorToUpdate);
 
                     db.SaveChanges();
 
@@ -169,7 +173,37 @@ namespace ContosoUniversity.Controllers
                     ModelState.AddModelError("", "Unable to save changes");
                 }
             }
+            PopulateAssignedCourseData(instructorToUpdate);
             return View(instructorToUpdate);
+        }
+
+        private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
+        {
+            if (selectedCourses == null)
+            {
+                instructorToUpdate.Courses = new List<Course>();
+                return;
+            }
+
+            var selectedCoursesHS = new HashSet<string>(selectedCourses);
+            var instructorCourses = new HashSet<int>(instructorToUpdate.Courses.Select(c => c.CourseID));
+            foreach (var course in db.Courses)
+            {
+                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+                {
+                    if (!instructorCourses.Contains(course.CourseID))
+                    {
+                        instructorToUpdate.Courses.Add(course);
+                    }
+                }
+                else
+                {
+                    if (instructorCourses.Contains(course.CourseID))
+                    {
+                        instructorToUpdate.Courses.Remove(course);
+                    }
+                }
+            }
         }
 
         // GET: Instructor/Delete/5
