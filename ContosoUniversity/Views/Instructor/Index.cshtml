@@ -49,6 +49,7 @@
                 {
                     @item.OfficeAssignment.Location
                 }
+            </td>
             <td>
                 @{
                     foreach (var course in item.Courses)
@@ -88,20 +89,20 @@
             {
                 selectedRow = "success";
             }
-            <tr class="@selectedRow">
-                <td>
-                    @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
-                </td>
-                <td>
-                    @item.CourseID
-                </td>
-                <td>
-                    @item.Title
-                </td>
-                <td>
-                    @item.Department.Name
-                </td>
-            </tr>
+        <tr class="@selectedRow">
+            <td>
+                @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
+            </td>
+            <td>
+                @item.CourseID
+            </td>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.Department.Name
+            </td>
+        </tr>
         }
 
     </table>
