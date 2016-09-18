@@ -200,6 +200,7 @@ namespace Entities.Migrations
             var crs = context.Courses.SingleOrDefault(c => c.Title == courseTitle);
 //            var crs = new Course { Title = "test", CourseID = 1234, Credits = 0, DepartmentID = 1,
 //                Instructors = new List<Instructor>()};
+
             if (crs == null)
             {
                 System.Console.WriteLine(courseTitle);
