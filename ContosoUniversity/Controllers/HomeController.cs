@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entities.Models;
-using Entities.ViewModels;
+using ContosoUniversity.ViewModels;
 using Entities.Context;
 
 namespace Entities.Controllers
