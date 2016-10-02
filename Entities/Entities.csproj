@@ -73,12 +73,17 @@
     <Compile Include="Migrations\201609170407141_RowVersion.Designer.cs">
       <DependentUpon>201609170407141_RowVersion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610020332246_Inheritance.cs" />
+    <Compile Include="Migrations\201610020332246_Inheritance.Designer.cs">
+      <DependentUpon>201610020332246_Inheritance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\OfficeAssignment.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609170407141_RowVersion.resx">
       <DependentUpon>201609170407141_RowVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020332246_Inheritance.resx">
+      <DependentUpon>201610020332246_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
