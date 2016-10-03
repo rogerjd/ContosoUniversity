@@ -17,9 +17,28 @@ namespace ContosoUniversity.Controllers
         private SchoolContext db = new SchoolContext();
 
         // GET: Course
-        public ActionResult Index()
+        //replace for change, else ok
+        //public ActionResult Index()
+        //{
+        //    //this(eager loading) is good, but experiment with other way 
+        //    //var courses = db.Courses.Include(c => c.Department);
+
+        //    var courses = db.Courses;
+        //    var sql = courses.ToString();
+        //    return View(courses.ToList());
+        //}
+
+        public ActionResult Index(int? SelectedDepartment)
         {
-            var courses = db.Courses.Include(c => c.Department);
+            var departments = db.Departments.OrderBy(q => q.Name).ToList();
+            ViewBag.SelectedDepartment = new SelectList(departments, "DepartmentID", "Name", SelectedDepartment);
+            int departmentID = SelectedDepartment.GetValueOrDefault();
+
+            IQueryable<Course> courses = db.Courses
+                .Where(c => !SelectedDepartment.HasValue || c.DepartmentID == departmentID)
+                .OrderBy(d => d.CourseID)
+                .Include(d => d.Department);
+            var sql = courses.ToString();
             return View(courses.ToList());
         }
 
