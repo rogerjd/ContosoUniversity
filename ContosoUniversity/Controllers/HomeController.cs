@@ -20,13 +20,21 @@ namespace Entities.Controllers
 
         public ActionResult About()
         {
-            IQueryable<EnrollmentDateGroup> data = from std in db.Students
-                                                   group std by std.EnrollmentDate into dateGroup
-                                                   select new EnrollmentDateGroup
-                                                   {
-                                                       EnrollmentDate = dateGroup.Key,
-                                                       StudentCount = dateGroup.Count()
-                                                   };
+            // Commenting out LINQ to show how to do the same thing in SQL
+            //IQueryable<EnrollmentDateGroup> data = from std in db.Students
+            //                                       group std by std.EnrollmentDate into dateGroup
+            //                                       select new EnrollmentDateGroup
+            //                                       {
+            //                                           EnrollmentDate = dateGroup.Key,
+            //                                           StudentCount = dateGroup.Count()
+            //                                       };
+
+            string query = "SELECT EnrollmentDate, Count(*) AS StudentCount " +
+                "FROM Person " +
+                "WHERE Discriminator = 'Student' " +
+                "GROUP BY EnrollmentDate";
+
+            IEnumerable<EnrollmentDateGroup> data = db.Database.SqlQuery<EnrollmentDateGroup>(query);
             return View(data.ToList());
         }
 
