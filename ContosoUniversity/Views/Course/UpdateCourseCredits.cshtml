@@ -8,11 +8,13 @@
 
 @if (ViewBag.RowsAffected == null)
 {
+    @Html.ValidationSummary(true)
     using (Html.BeginForm())
     {
         <p>
             Enter a number to multiply every course's credits by: @Html.TextBox("multiplier")
         </p>
+        @ViewBag.err
 
         <p>
             <input type="submit" value="Update" />

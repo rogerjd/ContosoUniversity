@@ -38,7 +38,7 @@ namespace ContosoUniversity.Controllers
                 .Where(c => !SelectedDepartment.HasValue || c.DepartmentID == departmentID)
                 .OrderBy(d => d.CourseID)
                 .Include(d => d.Department);
-            var sql = courses.ToString();
+//debug: warning unused var suppressed if not compile time constant       var sql = courses.ToString();
             return View(courses.ToList());
         }
 
@@ -181,6 +181,11 @@ namespace ContosoUniversity.Controllers
             if (multiplier != null)
             {
                 ViewBag.RowsAffected = db.Database.ExecuteSqlCommand("UPDATE Course SET Credits = Credits * {0}", multiplier);
+            }
+            else
+            {
+                ModelState.AddModelError("", "test err");
+                ViewBag.err = "invalid entry";
             }
             return View();
         }
