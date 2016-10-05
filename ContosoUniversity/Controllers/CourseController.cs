@@ -38,7 +38,7 @@ namespace ContosoUniversity.Controllers
                 .Where(c => !SelectedDepartment.HasValue || c.DepartmentID == departmentID)
                 .OrderBy(d => d.CourseID)
                 .Include(d => d.Department);
-//debug: warning unused var suppressed if not compile time constant       var sql = courses.ToString();
+            //debug: warning unused var suppressed if not compile time constant       var sql = courses.ToString();
             return View(courses.ToList());
         }
 
